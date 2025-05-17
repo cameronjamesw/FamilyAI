@@ -1,6 +1,7 @@
 {% load static %}
 {% load i18n %}
 {% url 'family_ai_app:home' as home_url %}
+{% url 'family_ai_app:alerts' as alerts_url %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
@@ -24,11 +25,18 @@
     <header>
         <div id="fai_header">
             <div class="logo">
-                <b>Family AI</b>
+                <b>Family AI</b> 
                 <p>Technology made easy</p>
             </div>
             <nav>
-                <div><a class="nav-link" href="{% url 'family_ai_app:home' %}">Home</a></div>
+                <div>
+                    {% if user.is_authenticated %}
+                    <a class="nav-link" href="{% url 'family_ai_app:alerts' %}">
+                    <i class="fa-solid fa-bell"></i>
+                    </a>
+                    {% endif %}
+                    <a class="nav-link" href="{% url 'family_ai_app:home' %}">Home</a>
+                </div>
                 {% if user.is_authenticated %}
                 <div><a href="{% url 'account_logout' %}">Logout</a></div>
                 {% else %}

@@ -1,5 +1,5 @@
 from django.urls import path
-from family_ai_app.views.auth_views import home
+from family_ai_app.views.auth_views import home, alerts
 from family_ai_app.views.user_views import UserListView
 from family_ai_app.views.ticket_views import (
     TicketListCreateView,
@@ -21,6 +21,7 @@ app_name = 'family_ai_app'
 urlpatterns = [
     # Navigation endpoints
     path('', home, name='home'),
+    path('notifications/', alerts, name='alerts'),
 
     # User endpoints
     path('users/', UserListView.as_view(), name='user-list'),
@@ -35,7 +36,6 @@ urlpatterns = [
     path('messages/', MessageListCreateView.as_view(), name='message-list-create'),
     path('messages/<int:pk>/', MessageDetailView.as_view(), name='message-detail'),
 
-    # Notification endpoints
-    path('notifications/', NotificationListView.as_view(), name='notification-list'),
-    path('notifications/<int:pk>/', NotificationDetailView.as_view(), name='notification-detail'),
+    path('api/notifications/', NotificationListView.as_view(), name='notification-list'),
+    path('api/notifications/<int:pk>/', NotificationDetailView.as_view(), name='notification-detail'),
 ]

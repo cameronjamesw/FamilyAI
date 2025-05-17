@@ -5,6 +5,9 @@ from django.contrib.auth import logout
 def home(request):
     return render(request, 'family_ai/home.html')
 
+def alerts(request):
+    return render(request, 'family_ai/alerts.html')
+
 class CustomSignupView(SignupView):
     def form_valid(self, form):
         response = super().form_valid(form)
